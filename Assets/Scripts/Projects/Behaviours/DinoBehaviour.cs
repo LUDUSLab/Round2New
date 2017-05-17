@@ -28,6 +28,7 @@ public class DinoBehaviour : MonoBehaviour
     public float knock;
     float takingDamage = 0f;
 
+
     LoadManager lm;
 
 	void Start ()
