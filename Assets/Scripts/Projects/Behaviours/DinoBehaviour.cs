@@ -9,6 +9,7 @@ public class DinoBehaviour : MonoBehaviour
     public float maxAccel = 2f;
     private float accel = 0f;
     public float accelInc = 0.1f;
+    bool isBitting;
 
     Rigidbody2D rb;
     bool facingRight = true;
@@ -24,7 +25,7 @@ public class DinoBehaviour : MonoBehaviour
 
     public Animator anim;
 
-    int hp;
+    public int hp;
     public float knock;
     float takingDamage = 0f;
 
@@ -35,7 +36,7 @@ public class DinoBehaviour : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-
+        isBitting = false;
         lm = FindObjectOfType<LoadManager>();
 
         hp = 3;
@@ -43,6 +44,14 @@ public class DinoBehaviour : MonoBehaviour
 	
 	void Update ()
     {
+        if ((anim.GetCurrentAnimatorStateInfo(0)).IsName("Bite"))
+        {
+            isBitting = true;
+        }
+        else
+        {
+            isBitting = false;
+        }
         jump();
         attack();
 	}
@@ -80,14 +89,48 @@ public class DinoBehaviour : MonoBehaviour
         }    
     }
 
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Fall"))
         {
             Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-            lm.LoadLevel("Menu");
+            //lm.LoadLevel("Menu");
+        }
+
+        if ((other.tag == "Bee"))
+        {
+            if (!isBitting)
+            {
+                hp--;
+                rb.velocity = Vector3.zero;
+
+                if (other.transform.position.x > transform.position.x)
+                {
+                    rb.AddForce(new Vector2(knock * (-200f), 50));
+                }
+                else
+                {
+                    rb.AddForce(new Vector2(knock * (200f), 50));
+                }
+
+                takingDamage = 0.15f;
+            }
+            else
+            {
+                Destroy(other.gameObject);
+            }
+        }
+        if (other.tag == "Hive")
+        {
+            if (isBitting)
+            {
+                Debug.Log("matando a colmeia");
+                Destroy(other.gameObject);
+            }
         }
     }
+
 
     #endregion
 
@@ -120,6 +163,7 @@ public class DinoBehaviour : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
+            rb.velocity = new Vector2(0, 0);
             anim.SetTrigger("Bite");
         }
     }
@@ -133,7 +177,7 @@ public class DinoBehaviour : MonoBehaviour
         anim.SetFloat("Speed", Mathf.Abs(rb.velocity.x));
         anim.SetBool("Grounded", grounded);
         anim.SetFloat("Falling", falling);
-        anim.SetFloat("takingDamage", takingDamage);
+        //anim.SetFloat("takingDamage", takingDamage);
     }
 
     void Flip()
