@@ -1,18 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[RequireComponent(typeof(UnityEngine.AI.NavMeshAgent))]
 
 
 public class sapo_script : MonoBehaviour {
+    private Transform target;
+    private Animator animator;
+    private float Distancia;
     public float chaseRange;// distancia de onde o sapo começa a seguir o dino
     public double atqRange = 1.0;//range do ataque do sapo
     public int vidaSapo;//vida do sapo
-    private GameObject Dino;
     private GameObject Sapo;
+    private GameObject Dino;
     public int Damage;//dano do ataque do sapo
-    private UnityEngine.AI.NavMeshAgent navMesh;
     private bool podeAtacar;
+    public float vel;
+    Rigidbody2D rb;
 
 
 
@@ -23,21 +26,28 @@ public class sapo_script : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        rb = gameObject.GetComponent<Rigidbody2D>();
         Sapo = GameObject.FindWithTag("Enemy");
+        target = GameObject.FindGameObjectWithTag("Player").transform;//player
         Dino = GameObject.FindWithTag("Player");
-        navMesh = GetComponent<UnityEngine.AI.NavMeshAgent>();
         podeAtacar = true;
     }
 
     // Update is called once per frame
     void Update() {
-        navMesh.destination = Dino.transform.position; // o inimigo irá mover-se até a posição do inimigo
-        if (Vector3.Distance(transform.position, Dino.transform.position) < atqRange)
+        Distancia = Vector2.Distance(transform.position, target.transform.position); // o inimigo irá mover-se até a posição do player
+        if (Distancia < chaseRange)
+        {
+            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, Dino.GetComponent<Transform>().position, 2*Time.deltaTime);
+            //rb.AddForce(Vector2.left * vel, 0);
+        }
+        if (Distancia < atqRange)
         { 
             ataque();
+
         }
         //aqui o enemy recebe dano do dino REVER
-         if (Vector3.Distance (transform.position, Dino.transform.position) < 2) { 
+         if (Distancia < 1.5) { 
                 vidaSapo -= 1;
          }
     
@@ -47,15 +57,17 @@ public class sapo_script : MonoBehaviour {
  
 
     }
+    
+
 
     void ataque() {
-    if (podeAtacar == true)
-    {
-        StartCoroutine("TempoDeAtaque");
-        Dino.GetComponent<DinoBehaviour>().hp -= Damage; 
-    }
+        if (podeAtacar == true)
+        {
+ 
+            Dino.GetComponent<DinoBehaviour>().hp -= Damage; 
+        }
 
-}
+    }
 
     IEnumerator TempoDeAtaque()
     { // isto é o tempo em que o inimigo espera entre cada ataque
@@ -66,7 +78,6 @@ public class sapo_script : MonoBehaviour {
 
     }
         
-
-
+   
      
     
