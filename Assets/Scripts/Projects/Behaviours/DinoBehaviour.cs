@@ -9,11 +9,18 @@ public class DinoBehaviour : MonoBehaviour
     public float maxAccel = 2f;
     private float accel = 0f;
     public float accelInc = 0.1f;
+	private int SpeedMinus;
+	public Vector3 RespawnPoint;
     bool isBitting;
+
+	private float TimeSlime;
+	private float compagTime;
 
     Rigidbody2D rb;
     bool facingRight = true;
     float move;
+
+	private int respawn;
 
     bool grounded = false;
 
@@ -40,6 +47,9 @@ public class DinoBehaviour : MonoBehaviour
         lm = FindObjectOfType<LoadManager>();
 
         hp = 3;
+		respawn = 0;
+		SpeedMinus = 0;
+		TimeSlime = 0;
 	}
 	
 	void Update ()
@@ -62,6 +72,18 @@ public class DinoBehaviour : MonoBehaviour
         setAnimations();
         walk();
         accelIncrement();
+
+		if (maxSpeed == 2){
+
+			compagTime = Time.time;
+
+			if ((TimeSlime + 3) < compagTime) {
+
+				maxAccel = 2;
+				maxSpeed = 4;
+
+			}
+		}
     }
 
 
@@ -95,6 +117,7 @@ public class DinoBehaviour : MonoBehaviour
         if (other.CompareTag("Fall"))
         {
             Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+			transform.position = RespawnPoint;
             //lm.LoadLevel("Menu");
         }
 
@@ -129,6 +152,30 @@ public class DinoBehaviour : MonoBehaviour
                 Destroy(other.gameObject);
             }
         }
+		if (other.CompareTag ("Checkpoint"))
+		{
+			respawn = 1;	
+			RespawnPoint = other.transform.position;
+		}
+		if (other.CompareTag ("Life")) {
+
+			if (hp < 3) {
+
+				hp++;
+				other.gameObject.SetActive (false);
+
+			}
+
+		}
+
+		if (other.CompareTag ("Smile Ball")) {
+
+			other.gameObject.SetActive (false);
+			TimeSlime = Time.time;
+			maxSpeed = 2;
+			maxAccel = 1;
+
+		}
     }
 
 
