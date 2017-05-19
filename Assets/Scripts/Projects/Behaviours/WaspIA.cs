@@ -4,35 +4,54 @@ using UnityEngine;
 
 public class WaspIA : MonoBehaviour {
     public int hp;
-    public float thrust, speed;
+    public float thrust, speed,_waitTime;
     GameObject Dino;
-    //Transform posInicial;
-    bool canAttack;
+   
+    bool canAttack, ehnois,initiattack=true;
     Rigidbody2D rb;
-    Vector2 direction, posInicial;
+    Vector2 direction, posInicial, posFinal;
     
 	// Use this for initialization
 	void Start () {
         hp = 3;
+        
         Dino = GameObject.FindGameObjectWithTag("Player");
+        posFinal = new Vector2(Dino.transform.position.x, Dino.transform.position.y);
         rb = gameObject.GetComponent<Rigidbody2D>();
-        posInicial.x = gameObject.transform.position.x;
-        posInicial.y = gameObject.transform.position.y;
+        posInicial = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
         canAttack = true;
+        ehnois = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (!canAttack)
+        Debug.Log(posFinal.x);
+        if ((!canAttack)&&(ehnois))
         {
-            gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position,posInicial, speed * Time.deltaTime);
-            if (gameObject.transform.position.x == posInicial.x)
+            Vector2 pos = new Vector2(posFinal.x + 6, posInicial.y);
+            gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position,pos, speed * Time.deltaTime);
+            if (initiattack)
             {
-                canAttack = true;
+                if (gameObject.transform.position.x == pos.x)
+                {
+                    Invoke("InitiateAttack", _waitTime);
+                    initiattack = false;
+                }
             }
         }
         else{
-            Attack();
+            if (canAttack)
+            {
+                Attack();
+                
+            }
+            
+        }
+        if(gameObject.transform.position.x == posFinal.x+0.5)
+        {
+            ehnois = true;
+            canAttack = false;
+            rb.velocity = new Vector2(0, 0);
         }
 	}
 
@@ -40,23 +59,35 @@ public class WaspIA : MonoBehaviour {
     {
         if(collision.tag == "Player")
         {
-            Debug.Log("acertou mizeravi");
             canAttack = false;
-            gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            ehnois = true;
             rb.velocity = new Vector2(0, 0);
-            Invoke("setVelocityZero", 1f);
         }
     }
 
     void Attack()
     {
-        direction = new Vector2(Dino.transform.position.x - gameObject.transform.position.x, Dino.transform.position.y - gameObject.transform.position.y);
+        posFinal = new Vector2(Dino.transform.position.x, Dino.transform.position.y);
+        if (Dino.transform.position.x < gameObject.transform.position.x)
+        {
+            direction = new Vector2(posFinal.x - gameObject.transform.position.x, posFinal.y - gameObject.transform.position.y);
+        }
+        else
+        {
+            direction = new Vector2(-posFinal.x + gameObject.transform.position.x, -posFinal.y + gameObject.transform.position.y);
+        }
         rb.AddForce(direction * thrust);
+        canAttack = false;
+        ehnois = false;
+        initiattack = true;
     }
 
-    void setVelocityZero()
+    void setAttackTrue()
     {
-        gameObject.GetComponent<BoxCollider2D>().enabled = true;
+        canAttack = true;
     }
-
+    void InitiateAttack()
+    {
+        this.canAttack = true;
+    }
 }
