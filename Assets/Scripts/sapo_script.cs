@@ -10,12 +10,12 @@ public class sapo_script : MonoBehaviour {
     public float chaseRange;// distancia de onde o sapo começa a seguir o dino
     public double atqRange = 1.0;//range do ataque do sapo
     public int vidaSapo;//vida do sapo
-    private GameObject Sapo;
     private GameObject Dino;
     public int Damage;//dano do ataque do sapo
     private bool podeAtacar;
     public float vel;
     Rigidbody2D rb;
+    private bool podeReceber;
 
 
 
@@ -27,10 +27,11 @@ public class sapo_script : MonoBehaviour {
     // Use this for initialization
     void Start () {
         rb = gameObject.GetComponent<Rigidbody2D>();
-        Sapo = GameObject.FindWithTag("Enemy");
         target = GameObject.FindGameObjectWithTag("Player").transform;//player
         Dino = GameObject.FindWithTag("Player");
         podeAtacar = true;
+        podeReceber = true;
+        animator = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -38,35 +39,59 @@ public class sapo_script : MonoBehaviour {
         Distancia = Vector2.Distance(transform.position, target.transform.position); // o inimigo irá mover-se até a posição do player
         if (Distancia < chaseRange)
         {
-            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, Dino.GetComponent<Transform>().position, 2*Time.deltaTime);
+            animator.SetTrigger("walk");
+            gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, Dino.GetComponent<Transform>().position, 2*Time.deltaTime);
             //rb.AddForce(Vector2.left * vel, 0);
         }
         if (Distancia < atqRange)
-        { 
-            ataque();
+        {
+            animator.SetTrigger("ataque");
+            Debug.Log("Ta atacando ou não?");
+            //ataque();
 
         }
         //aqui o enemy recebe dano do dino REVER
          if (Distancia < 1.5) { 
-                vidaSapo -= 1;
+            if (Dino.GetComponent<DinoBehaviour>().isBitting == true)
+            {
+                Debug.Log("Sapo perdeu vida");
+                LoseHP();
+            }
+                
+                
          }
     
         if (vidaSapo <= 0) { // se a vida do inimigo for menor ou igual a 0 ele ira auto-destruir-se 
-            Destroy(Sapo);
+            Destroy(gameObject);
+            Debug.Log("pq morreu, morreu pq?");
     }
  
 
     }
     
+    void LoseHP()
+    {
+        if (podeReceber == true)
+        {
+            vidaSapo--;
+        }
+        
+        
+    }
 
-
-    void ataque() {
+    /*&void ataque() {
         if (podeAtacar == true)
         {
- 
-            Dino.GetComponent<DinoBehaviour>().hp -= Damage; 
+            animator.setTrigger("ataque");
         }
 
+    }*/
+
+    IEnumerator recebeDano()
+    {
+        podeReceber = false;
+        yield return new WaitForSeconds(1);
+        podeReceber = true;
     }
 
     IEnumerator TempoDeAtaque()

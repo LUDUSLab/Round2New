@@ -11,7 +11,7 @@ public class DinoBehaviour : MonoBehaviour
     public float accelInc = 0.1f;
 	private int SpeedMinus;
 	public Vector3 RespawnPoint;
-    bool isBitting;
+    public bool isBitting;
 
 	private float TimeSlime;
 	private float compagTime;
@@ -119,6 +119,14 @@ public class DinoBehaviour : MonoBehaviour
             Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 			transform.position = RespawnPoint;
             //lm.LoadLevel("Menu");
+        }
+        if ((other.tag == "Enemy"))
+        {
+            if (!isBitting)
+            {
+                hp--;
+                rb.velocity = Vector3.zero;
+            }
         }
 
         if ((other.tag == "Bee"))
