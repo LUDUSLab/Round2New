@@ -176,7 +176,27 @@ public class DinoBehaviour : MonoBehaviour
 
 		}
 
-		if (other.CompareTag ("Smile Ball")) {
+        if ((other.tag == "Wasp"))
+        {
+            if (!isBitting)
+            {
+                hp--;
+                rb.velocity = Vector3.zero;
+
+                if (other.transform.position.x > transform.position.x)
+                {
+                    rb.AddForce(new Vector2(knock * (-200f), 50));
+                }
+                else
+                {
+                    rb.AddForce(new Vector2(knock * (200f), 50));
+                }
+
+                takingDamage = 0.15f;
+            }
+        }
+
+        if (other.CompareTag ("Smile Ball")) {
 
 			other.gameObject.SetActive (false);
 			TimeSlime = Time.time;

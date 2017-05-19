@@ -39,7 +39,7 @@ public class sapo_script : MonoBehaviour {
         Distancia = Vector2.Distance(transform.position, target.transform.position); // o inimigo irá mover-se até a posição do player
         if (Distancia < chaseRange)
         {
-            animator.SetTrigger("walk");
+            //animator.SetTrigger("walk");
             gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, Dino.GetComponent<Transform>().position, 2*Time.deltaTime);
             //rb.AddForce(Vector2.left * vel, 0);
         }
