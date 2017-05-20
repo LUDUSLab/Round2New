@@ -45,6 +45,7 @@ public class DinoBehaviour : MonoBehaviour
         anim = GetComponent<Animator>();
         isBitting = false;
         lm = FindObjectOfType<LoadManager>();
+        RespawnPoint = transform.position;
 
         hp = 3;
 		respawn = 0;
