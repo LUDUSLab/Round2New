@@ -6,39 +6,61 @@ public class WaspIA : MonoBehaviour {
     public int hp;
     public float thrust, speed,_waitTime;
     GameObject Dino;
-   
-    bool canAttack, ehnois,initiattack=true;
+    bool turnedLeft;
+    Vector2 pos;
+    bool canAttack, ehnois, initiattack=true;
     Rigidbody2D rb;
     Vector2 direction, posInicial, posFinal;
     
 	// Use this for initialization
 	void Start () {
         hp = 3;
-        
+        turnedLeft = true;
         Dino = GameObject.FindGameObjectWithTag("Player");
         posFinal = new Vector2(Dino.transform.position.x, Dino.transform.position.y);
         rb = gameObject.GetComponent<Rigidbody2D>();
         posInicial = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
         canAttack = true;
         ehnois = false;
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        Debug.Log(posFinal.x);
-        if ((!canAttack)&&(ehnois))
+
+
+        if ((!canAttack) && (ehnois))
         {
-            Vector2 pos = new Vector2(posFinal.x + 6, posInicial.y);
+            if (turnedLeft) {
+                pos = new Vector2(posFinal.x + 6, posInicial.y);
+                //gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, pos, speed * Time.deltaTime);
+            }
+            else
+            {
+                pos = new Vector2(posFinal.x, posInicial.y);
+            }
+
             gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position,pos, speed * Time.deltaTime);
             if (initiattack)
             {
-                if (gameObject.transform.position.x == pos.x)
-                {
-                    Invoke("InitiateAttack", _waitTime);
-                    initiattack = false;
+                if ((gameObject.transform.position.x == pos.x))
+                    {
+                        Invoke("InitiateAttack", _waitTime);
+                        initiattack = false;
+                    if (Dino.transform.position.x < gameObject.transform.position.x)
+                    {
+                        turnedLeft = true;
+                        gameObject.transform.rotation = new Quaternion(0, 0, 0, 0);
+                    }
+                    else
+                    {
+                        turnedLeft = false;
+                        gameObject.transform.rotation = new Quaternion(0, 180, 0, 0);
+                    }
                 }
             }
         }
+
         else{
             if (canAttack)
             {
@@ -47,11 +69,22 @@ public class WaspIA : MonoBehaviour {
             }
             
         }
-        if(gameObject.transform.position.x == posFinal.x+0.5)
+
+        if(gameObject.transform.position.x <= posFinal.x+0.5)
         {
             ehnois = true;
             canAttack = false;
             rb.velocity = new Vector2(0, 0);
+            if (Dino.transform.position.x < gameObject.transform.position.x)
+            {
+                turnedLeft = true;
+                gameObject.transform.rotation = new Quaternion(0, 0, 0, 0);
+            }
+            else
+            {
+                turnedLeft = false;
+                gameObject.transform.rotation = new Quaternion(0, 180, 0, 0);
+            }
         }
 	}
 
@@ -70,10 +103,12 @@ public class WaspIA : MonoBehaviour {
         posFinal = new Vector2(Dino.transform.position.x, Dino.transform.position.y);
         if (Dino.transform.position.x < gameObject.transform.position.x)
         {
+            Debug.Log("esquerda");
             direction = new Vector2(posFinal.x - gameObject.transform.position.x, posFinal.y - gameObject.transform.position.y);
         }
         else
         {
+            Debug.Log("direita");
             direction = new Vector2(-posFinal.x + gameObject.transform.position.x, -posFinal.y + gameObject.transform.position.y);
         }
         rb.AddForce(direction * thrust);
@@ -89,5 +124,15 @@ public class WaspIA : MonoBehaviour {
     void InitiateAttack()
     {
         this.canAttack = true;
+        if (Dino.transform.position.x < gameObject.transform.position.x)
+        {
+            turnedLeft = true;
+            gameObject.transform.rotation = new Quaternion(0, 0, 0, 0);
+        }
+        else
+        {
+            turnedLeft = false;
+            gameObject.transform.rotation = new Quaternion(0, 180, 0, 0);
+        }
     }
 }
