@@ -1,11 +1,15 @@
 fileFormatVersion: 2
-guid: cb527d7a41b16b44e8470e6a6d9fd362
-timeCreated: 1495153511
+guid: f11c23789d7162642bc4bf4f96287b9e
+timeCreated: 1495425815
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: SaltoSapo_0
-    21300002: SaltoSapo_1
+    21300000: SapoLingua_0
+    21300002: SapoLingua_1
+    21300004: SapoLingua_2
+    21300006: SapoLingua_3
+    21300008: SapoLingua_4
+    21300010: SapoLingua_5
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -29,7 +33,7 @@ TextureImporter:
   textureFormat: 1
   maxTextureSize: 2048
   textureSettings:
-    filterMode: 1
+    filterMode: -1
     aniso: -1
     mipBias: -1
     wrapMode: 1
@@ -96,26 +100,78 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SaltoSapo_0
+      name: SapoLingua_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 61
-        height: 50
+        width: 53
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: SaltoSapo_1
+      name: SapoLingua_1
       rect:
         serializedVersion: 2
-        x: 83
+        x: 54
         y: 0
-        width: 74
-        height: 50
+        width: 58
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SapoLingua_2
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 0
+        width: 62
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SapoLingua_3
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 0
+        width: 66
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SapoLingua_4
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 0
+        width: 73
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SapoLingua_5
+      rect:
+        serializedVersion: 2
+        x: 317
+        y: 0
+        width: 77
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
