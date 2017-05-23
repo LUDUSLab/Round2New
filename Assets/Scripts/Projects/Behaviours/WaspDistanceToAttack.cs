@@ -6,11 +6,13 @@ public class WaspDistanceToAttack : MonoBehaviour {
     GameObject Dino;
     public float distance;
     Transform posDino;
+    Rigidbody2D rb;
     // Use this for initialization
     void Start()
     {
         Dino = GameObject.FindGameObjectWithTag("Player");
         posDino = Dino.GetComponent<Transform>();
+        rb = gameObject.GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -24,6 +26,7 @@ public class WaspDistanceToAttack : MonoBehaviour {
             else
             {
                 gameObject.GetComponent<WaspIA>().enabled = false;
+                rb.velocity = new Vector2(0, 0);
             }
 
         }
@@ -36,6 +39,7 @@ public class WaspDistanceToAttack : MonoBehaviour {
             else
             {
                 gameObject.GetComponent< WaspIA>().enabled = false;
+                rb.velocity = new Vector2(0, 0);
             }
         }
     }

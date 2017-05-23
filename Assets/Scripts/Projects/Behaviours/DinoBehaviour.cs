@@ -225,7 +225,7 @@ public class DinoBehaviour : MonoBehaviour
 
     void jump()
     {
-        if (Input.GetButtonDown("Jump")) Debug.Log(grounded);
+        if (Input.GetButtonDown("Jump")) 
         if (grounded && Input.GetButtonDown("Jump") && takingDamage <= 0)
         {
             rb.velocity = new Vector2(rb.velocity.x, 0);
@@ -268,7 +268,6 @@ public class DinoBehaviour : MonoBehaviour
     void getValues()
     {
         grounded = Physics2D.OverlapArea(groundCheck1.position, groundCheck2.position, whatIsGround);
-        Debug.Log(grounded);
         move = Input.GetAxis("Horizontal");
         falling = rb.velocity.y;
     }
