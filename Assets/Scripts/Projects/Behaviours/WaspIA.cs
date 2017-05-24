@@ -11,6 +11,7 @@ public class WaspIA : MonoBehaviour {
     bool canAttack, ehnois, initiattack=true;
     Rigidbody2D rb;
     Vector2 direction, posInicial, posFinal;
+    bool DinoBite;
     
 	// Use this for initialization
 	void Start () {
@@ -18,6 +19,7 @@ public class WaspIA : MonoBehaviour {
         turnedLeft = true;
         Dino = GameObject.FindGameObjectWithTag("Player");
         posFinal = new Vector2(Dino.transform.position.x, Dino.transform.position.y);
+        DinoBite = Dino.GetComponent<DinoBehaviour>().isBitting;
         rb = gameObject.GetComponent<Rigidbody2D>();
         posInicial = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
         canAttack = true;
@@ -37,7 +39,7 @@ public class WaspIA : MonoBehaviour {
             }
             else
             {
-                pos = new Vector2(posFinal.x, posInicial.y);
+                pos = new Vector2(posFinal.x- 3, posInicial.y);
             }
 
             gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position,pos, speed * Time.deltaTime);
@@ -60,18 +62,45 @@ public class WaspIA : MonoBehaviour {
             }
             
         }
+        if (turnedLeft)
+        {
             if (gameObject.transform.position.x <= posFinal.x + 0.5)
             {
-                FinishAttack();
+                if ((!ehnois))
+                {
+                    FinishAttack();
+                }
+
             }
-          
-	}
+        }
+        else
+        {
+            if (gameObject.transform.position.x >= posFinal.x)
+            {
+                if ((!ehnois))
+                {
+                    FinishAttack();
+                }
+
+            }
+
+        }
+
+        }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "Player")
         {
             FinishAttack();
+            if (DinoBite)
+            {
+                hp--;
+                if (hp <= 0)
+                {
+                    Destroy(gameObject);
+                }
+            }
         }
     }
 
@@ -82,7 +111,6 @@ public class WaspIA : MonoBehaviour {
         direction = new Vector2(posFinal.x - gameObject.transform.position.x, posFinal.y - gameObject.transform.position.y);
         direction = direction.normalized;
         rb.AddForce(new Vector2(direction.x * thrust, 0));
-        Debug.Log("rfo");
         canAttack = false;
         ehnois = false;
         initiattack = true;
@@ -120,4 +148,5 @@ public class WaspIA : MonoBehaviour {
         rb.velocity = new Vector2(0, 0);
         Flip();
     }
+
 }

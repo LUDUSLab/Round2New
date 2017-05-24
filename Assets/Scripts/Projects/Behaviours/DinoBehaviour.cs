@@ -186,11 +186,11 @@ public class DinoBehaviour : MonoBehaviour
 
                 if (other.transform.position.x > transform.position.x)
                 {
-                    rb.AddForce(new Vector2(knock * (-200f), 50));
+                    rb.AddForce(new Vector2(knock * (-300f), 50));
                 }
                 else
                 {
-                    rb.AddForce(new Vector2(knock * (200f), 50));
+                    rb.AddForce(new Vector2(knock * (300f), 50));
                 }
 
                 takingDamage = 0.15f;
