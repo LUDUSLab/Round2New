@@ -11,7 +11,7 @@ public class DinoBehaviour : MonoBehaviour
     public float accelInc = 0.1f;
 	private int SpeedMinus;
 	public Vector3 RespawnPoint;
-    public bool isBitting;
+    public bool isBitting, slimed;
 
 	private float TimeSlime;
 	private float compagTime;
@@ -26,7 +26,7 @@ public class DinoBehaviour : MonoBehaviour
 
     public Transform groundCheck1;
     public Transform groundCheck2;
-    public LayerMask whatIsGround;
+    public LayerMask whatIsGround, slimePuddle;
     public float jumpForce = 700f;
     public float falling;
 
@@ -51,6 +51,7 @@ public class DinoBehaviour : MonoBehaviour
 		respawn = 0;
 		SpeedMinus = 0;
 		TimeSlime = 0;
+        slimed = false;
 	}
 	
 	void Update ()
@@ -118,7 +119,7 @@ public class DinoBehaviour : MonoBehaviour
         if (other.CompareTag("Fall"))
         {
             Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-			transform.position = RespawnPoint;
+			//transform.position = RespawnPoint;
             //lm.LoadLevel("Menu");
         }
         if ((other.tag == "Enemy"))
@@ -226,7 +227,7 @@ public class DinoBehaviour : MonoBehaviour
     void jump()
     {
         if (Input.GetButtonDown("Jump")) 
-        if (grounded && Input.GetButtonDown("Jump") && takingDamage <= 0)
+        if ((grounded && Input.GetButtonDown("Jump") && takingDamage <= 0)||(slimed) && Input.GetButtonDown("Jump"))
         {
             rb.velocity = new Vector2(rb.velocity.x, 0);
 
@@ -268,6 +269,7 @@ public class DinoBehaviour : MonoBehaviour
     void getValues()
     {
         grounded = Physics2D.OverlapArea(groundCheck1.position, groundCheck2.position, whatIsGround);
+        slimed = Physics2D.OverlapArea(groundCheck1.position, groundCheck2.position, slimePuddle);
         move = Input.GetAxis("Horizontal");
         falling = rb.velocity.y;
     }
