@@ -7,7 +7,8 @@ public class SlimePool : MonoBehaviour {
     Rigidbody2D rbDino;
     float velDinoMax, jumpDino;
     public int waitTime;
-    float velY;
+    float velY, accel;
+    bool slow, back;
     DinoBehaviour db;
 	// Use this for initialization
 	void Start () {
@@ -17,7 +18,9 @@ public class SlimePool : MonoBehaviour {
         jumpDino = Dino.GetComponent<DinoBehaviour>().jumpForce;
         velDinoMax = Dino.GetComponent<DinoBehaviour>().maxSpeed;
         velY = rbDino.velocity.y;
-
+        accel = db.maxAccel;
+        //slow = true;
+       // back = true;
     }
 	
 	// Update is called once per frame
@@ -27,27 +30,39 @@ public class SlimePool : MonoBehaviour {
 
     void Slow()
     {
-        jumpDino = jumpDino - 250;
-        velDinoMax = velDinoMax / 2;
-        Dino.GetComponent<DinoBehaviour>().jumpForce = jumpDino;
-        Dino.GetComponent<DinoBehaviour>().maxSpeed = velDinoMax;
+       // if (slow)
+        //{
+            jumpDino = 350;
+            velDinoMax = 1.85f;
+            accel = 1;
+            Dino.GetComponent<DinoBehaviour>().jumpForce = jumpDino;
+            Dino.GetComponent<DinoBehaviour>().maxSpeed = velDinoMax;
+        //}
     }
+        
 
     void BackToNormal()
     {
-        jumpDino = jumpDino + 250;
-        velDinoMax = velDinoMax * 2;
-        Dino.GetComponent<DinoBehaviour>().jumpForce = jumpDino;
-        Dino.GetComponent<DinoBehaviour>().maxSpeed = velDinoMax;
+        //if (back)
+        //{
+        accel = 2;
+            jumpDino = 650;
+            velDinoMax = 4.5f;
+            Dino.GetComponent<DinoBehaviour>().jumpForce = jumpDino;
+            Dino.GetComponent<DinoBehaviour>().maxSpeed = velDinoMax;
+        //}
+        
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if(collision.tag == "Player")
         {
-            Debug.Log("entrou");
+            //back = true;
+            //Debug.Log("entrou");
             rbDino.gravityScale = 0.05f;
             Slow();
+            //slow = false;
             //rbDino.velocity = new Vector2(rbDino.velocity.x, -3);
         }
     }
@@ -56,9 +71,12 @@ public class SlimePool : MonoBehaviour {
     {
         if(collision.tag == "Player")
         {
-            Debug.Log("sai");
-            Dino.GetComponent<DinoBehaviour>().jumpForce = jumpDino + 250;
-            Invoke("setGravity", 0.5f);
+            //slow = true;
+            //Debug.Log("sai");
+            Dino.GetComponent<DinoBehaviour>().jumpForce = 400;
+            rbDino.gravityScale = 1.5f;
+            Invoke("setGravity", 1);
+            //back = false;
             //rbDino.velocity = new Vector2(rbDino.velocity.x, velY);
             yield return new WaitForSeconds(waitTime);
             BackToNormal();

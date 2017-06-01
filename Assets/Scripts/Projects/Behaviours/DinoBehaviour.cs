@@ -17,7 +17,7 @@ public class DinoBehaviour : MonoBehaviour
 	private float compagTime;
 
     Rigidbody2D rb;
-    bool facingRight = true;
+    public bool facingRight = true;
     float move;
 
 	private int respawn;
@@ -226,10 +226,12 @@ public class DinoBehaviour : MonoBehaviour
 
     void jump()
     {
-        if (Input.GetButtonDown("Jump")) 
+        //if (Input.GetButtonDown("Jump")) 
+
         if ((grounded && Input.GetButtonDown("Jump") && takingDamage <= 0)||(slimed) && Input.GetButtonDown("Jump"))
         {
-            rb.velocity = new Vector2(rb.velocity.x, 0);
+          
+            //rb.velocity = new Vector2(rb.velocity.x, 0);
 
             grounded = false;
 
