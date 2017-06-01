@@ -67,7 +67,7 @@ public class MenuManager : MonoBehaviour {
         {
             canGo = false;
             StartGame();
-            Invoke("QuitGame", 1.5f);
+            Invoke("QuitGame", waitTime);
         }
     }
 }
