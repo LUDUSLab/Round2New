@@ -34,9 +34,11 @@ public class slime : MonoBehaviour {
         {
             if (!isRight)
             {
+                Debug.Log("esquerda");
                 MovimentoEsq();
             }
             else
+                Debug.Log("direita");
                 MovimentoDir();
         }
         //movimentação do slime
@@ -47,7 +49,7 @@ public class slime : MonoBehaviour {
     }
      IEnumerator turn()
     {
-        if (isRight)
+        if (isRight == true)
         {
             isRight = false;
 
@@ -73,12 +75,11 @@ public class slime : MonoBehaviour {
     {
         animator.SetTrigger("walk");
         rb.velocity = Vector2.right * vel;
-
     }
     void MovimentoEsq()
     {
         animator.SetTrigger("walk");
-        rb.velocity = Vector2.left * vel;
+        rb.velocity = Vector2.left *(- vel);
        
     }
 
