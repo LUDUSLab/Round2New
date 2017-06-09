@@ -5,7 +5,7 @@ using UnityEngine;
 public class FireballController : MonoBehaviour
 {
 
-    public DinoBehaviour Dino;
+    DinoBehaviour Dino;
     public int Left;
     private Vector3 compag;
 
@@ -17,7 +17,7 @@ public class FireballController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        
         Dino = FindObjectOfType<DinoBehaviour>().GetComponent<DinoBehaviour>();
 
         compagTime = 0;
@@ -53,21 +53,18 @@ public class FireballController : MonoBehaviour
         }
 
         t += Time.deltaTime;
-        Debug.Log(t);
 
         if (t > 0.6)
             Destroy(gameObject);
 
     }
 
-    void OnTriggerEnter2d(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
-
-        if (other.CompareTag("Enemy"))
+        if(other.tag != "Player")
         {
-
-            other.gameObject.SetActive(false);
-
+            Destroy(gameObject);
         }
+        
     }
 }

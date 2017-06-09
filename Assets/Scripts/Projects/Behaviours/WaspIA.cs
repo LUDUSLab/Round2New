@@ -15,7 +15,7 @@ public class WaspIA : MonoBehaviour {
     
 	// Use this for initialization
 	void Start () {
-        hp = 3;
+        hp = 2;
         turnedLeft = true;
         Dino = GameObject.FindGameObjectWithTag("Player");
         posFinal = new Vector2(Dino.transform.position.x, Dino.transform.position.y);
@@ -81,26 +81,27 @@ public class WaspIA : MonoBehaviour {
                 {
                     FinishAttack();
                 }
-
             }
-
         }
+    }
 
-        }
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Player")
         {
             FinishAttack();
-            if (DinoBite)
+            Dino.GetComponent<DinoBehaviour>().Damage(gameObject);
+        }
+
+        if (collision.tag == "Bite")
+        {
+            hp--;
+            FinishAttack();
+            if (hp <= 0)
             {
-                hp--;
-                if (hp <= 0)
-                {
-                    Destroy(gameObject);
-                }
+                Destroy(gameObject);
             }
+            
         }
     }
 

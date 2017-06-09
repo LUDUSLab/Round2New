@@ -24,6 +24,7 @@ public class slime : MonoBehaviour {
         CanMove = true;
         isRight = true;
         StartCoroutine(turn());
+        Dino = GameObject.FindGameObjectWithTag("Player");
 
     }
 	
@@ -34,11 +35,11 @@ public class slime : MonoBehaviour {
         {
             if (!isRight)
             {
-                Debug.Log("esquerda");
+                //Debug.Log("esquerda");
                 MovimentoEsq();
             }
             else
-                Debug.Log("direita");
+                //Debug.Log("direita");
                 MovimentoDir();
         }
         //movimentação do slime
@@ -83,6 +84,27 @@ public class slime : MonoBehaviour {
        
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            Dino.GetComponent<DinoBehaviour>().Damage(gameObject);
+        }
+
+        if (collision.gameObject.tag == "Bite")
+        {
+                Destroy(gameObject);
+
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "FireBall")
+        {
+            Destroy(gameObject);
+        }
+    }
 }
 
 

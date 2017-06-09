@@ -55,7 +55,7 @@ public class sapo_script : MonoBehaviour
 
         }
         //aqui o enemy recebe dano do dino REVER
-        if (Distancia < 1.5)
+    /*    if (Distancia < 1.5)
         {
             if (Dino.GetComponent<DinoBehaviour>().isBitting == true)
             {
@@ -72,7 +72,7 @@ public class sapo_script : MonoBehaviour
             Debug.Log("pq morreu, morreu pq?");
         }
 
-
+    */
     }
 
     void LoseHP()
@@ -107,6 +107,37 @@ public class sapo_script : MonoBehaviour
         podeAtacar = false;
         yield return new WaitForSeconds(1);
         podeAtacar = true;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            Dino.GetComponent<DinoBehaviour>().Damage(gameObject);
+        }
+
+        if (collision.gameObject.tag == "Bite")
+        {
+            LoseHP();
+            if (vidaSapo <= 0)
+            {
+                Destroy(gameObject);
+            }
+
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "FireBall")
+        {
+            LoseHP();
+            if (vidaSapo <= 0)
+            {
+                Destroy(gameObject);
+            }
+
+        }
     }
 
 }

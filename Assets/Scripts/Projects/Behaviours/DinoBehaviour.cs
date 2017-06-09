@@ -11,8 +11,10 @@ public class DinoBehaviour : MonoBehaviour
     public float accelInc;
     private int SpeedMinus;
     public Vector3 RespawnPoint;
-    public bool isBitting, slimed;
+    public bool isBitting, slimed, isShooting;
     float delayToJump = 1f;
+    bool canTakeDamage;
+    public GameObject Fireball;
 
     private float TimeSlime;
     private float compagTime;
@@ -45,7 +47,9 @@ public class DinoBehaviour : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         isBitting = false;
+        isShooting = false;
         lm = FindObjectOfType<LoadManager>();
+        //Fireball = GameObject.FindGameObjectWithTag("FireBall");
         RespawnPoint = transform.position;
 
         hp = 3;
@@ -54,21 +58,15 @@ public class DinoBehaviour : MonoBehaviour
         TimeSlime = 0;
         slimed = false;
         jumped = false;
+        canTakeDamage = true;
     }
 
     void Update()
     {
-        /* Debug.Log(isBitting);
-         if ((anim.GetCurrentAnimatorStateInfo(0)).IsName("Bite"))
-         {
-             isBitting = true;
-         }
-         else
-         {
-             isBitting = false;
-         }*/
         jump();
         attack();
+        Die();
+        FireBall();
     }
 
     void FixedUpdate()
@@ -94,82 +92,14 @@ public class DinoBehaviour : MonoBehaviour
 
     #region Collisions
 
-    void OnCollisionEnter2D(Collision2D coll)
-    {
-        if (coll.gameObject.tag == "Slime")
-        {
-            hp--;
-            rb.velocity = Vector3.zero;
-
-            if (coll.transform.position.x > transform.position.x)
-            {
-                coll.rigidbody.AddForce(new Vector2(knock * (300f), 0));
-                rb.AddForce(new Vector2(knock * (-300f), 300));
-            }
-            else
-            {
-                coll.rigidbody.AddForce(new Vector2(knock * (-300f), 0));
-                rb.AddForce(new Vector2(knock * (300f), 300));
-            }
-
-            takingDamage = 0.15f;
-        }
-    }
-
-
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Fall"))
-        {
-            Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-            //transform.position = RespawnPoint;
-            //lm.LoadLevel("Menu");
-        }
-        if ((other.tag == "Enemy"))
-        {
-            if (!isBitting)
-            {
-                hp--;
-                rb.velocity = Vector3.zero;
-            }
-        }
-
-        if ((other.tag == "Bee"))
-        {
-            if (!isBitting)
-            {
-                hp--;
-                rb.velocity = Vector3.zero;
-
-                if (other.transform.position.x > transform.position.x)
-                {
-                    rb.AddForce(new Vector2(knock * (-200f), 50));
-                }
-                else
-                {
-                    rb.AddForce(new Vector2(knock * (200f), 50));
-                }
-
-                takingDamage = 0.15f;
-            }
-            else
-            {
-                Destroy(other.gameObject);
-            }
-        }
-        if (other.tag == "Hive")
-        {
-            if (isBitting)
-            {
-                Debug.Log("matando a colmeia");
-                Destroy(other.gameObject);
-            }
-        }
         if (other.CompareTag("Checkpoint"))
         {
             respawn = 1;
             RespawnPoint = other.transform.position;
         }
+
         if (other.CompareTag("Life")) {
 
             if (hp < 3) {
@@ -178,35 +108,6 @@ public class DinoBehaviour : MonoBehaviour
                 other.gameObject.SetActive(false);
 
             }
-
-        }
-
-        if ((other.tag == "Wasp"))
-        {
-            if (!isBitting)
-            {
-                hp--;
-                rb.velocity = Vector3.zero;
-
-                if (other.transform.position.x > transform.position.x)
-                {
-                    rb.AddForce(new Vector2(knock * (-300f), 50));
-                }
-                else
-                {
-                    rb.AddForce(new Vector2(knock * (300f), 50));
-                }
-
-                takingDamage = 0.15f;
-            }
-        }
-
-        if (other.CompareTag("Smile Ball")) {
-
-            other.gameObject.SetActive(false);
-            TimeSlime = Time.time;
-            maxSpeed = 2;
-            maxAccel = 1;
 
         }
     }
@@ -242,7 +143,6 @@ public class DinoBehaviour : MonoBehaviour
         }
         if (rb.velocity == new Vector2(rb.velocity.x, 0) && !grounded)
         {
-            Debug.Log("wow");
             rb.AddForce(new Vector2(0, -55));
         }
     }
@@ -255,13 +155,52 @@ public class DinoBehaviour : MonoBehaviour
             {
                 StartCoroutine(DelayToBite());
             }
-            
-           /* rb.velocity = new Vector2(0, 0);
-            anim.SetTrigger("Bite");
-            //isBitting = true;
-            StartCoroutine(BiteCheck());
-        */}
+        }
     }
+
+    void FireBall()
+    {
+        if (Input.GetButtonDown("Fire2"))
+        {
+            if (!isShooting)
+            {
+                StartCoroutine(DelayToShoot());
+            }
+        }
+    }
+
+    public void Damage(GameObject enemy)
+    {
+        StartCoroutine(takeDamage(enemy));
+    }
+
+    public IEnumerator takeDamage(GameObject enemy)
+    {
+        if (canTakeDamage)
+        {
+            canTakeDamage = false;
+            hp--;
+            rb.velocity = Vector3.zero;
+
+            if (enemy.transform.position.x > transform.position.x)
+            {
+                rb.AddForce(new Vector2(knock * (-250f), 100));
+            }
+            else
+            {
+                rb.AddForce(new Vector2(knock * (250f), 100));
+            }
+
+            takingDamage = 0.15f;
+            gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            yield return new WaitForSeconds(0.8f);
+            gameObject.GetComponent<BoxCollider2D>().enabled = true;
+            canTakeDamage = true;
+        }
+        
+    }
+
+
 
     #endregion
 
@@ -340,5 +279,37 @@ public class DinoBehaviour : MonoBehaviour
         }
         yield return null;
         isBitting = false;
+    }
+
+    public IEnumerator DelayToShoot()
+    {
+        Debug.Log(isShooting);
+        if (isShooting == false)
+        {
+            
+            rb.velocity = new Vector2(0, 0);
+            anim.SetTrigger("Bite");
+            isShooting = true;
+           
+            yield return new WaitForSeconds(0.15f);
+            Vector3 vec = new Vector3(gameObject.transform.position.x + 0.45f, gameObject.transform.position.y, gameObject.transform.position.z);
+            Instantiate(Fireball, vec, gameObject.transform.rotation);
+            Invoke("setShootDelay",0.6f);
+        }
+        yield return null;
+        //isShooting = false;
+    }
+
+    void Die()
+    {
+        if (hp <= 0)
+        {
+            lm.LoadLevel("MenuRound2");
+        }
+    }
+
+    void setShootDelay()
+    {
+        isShooting = false;
     }
 }
