@@ -61,7 +61,8 @@ public class BeeIA : MonoBehaviour {
         }
         if(collision.tag == "FireBall")
         {
-            Destroy(gameObject);
+            Debug.Log("wow");
+            Destroy(this.gameObject);
         }
     }
     

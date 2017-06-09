@@ -50,7 +50,7 @@ public class sapo_script : MonoBehaviour
         if (Distancia < atqRange)
         {
             ataque();
-            Debug.Log("Ta atacando ou não?");
+            //Debug.Log("Ta atacando ou não?");
 
 
         }

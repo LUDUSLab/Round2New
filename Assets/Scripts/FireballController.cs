@@ -65,6 +65,14 @@ public class FireballController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        
+        if(other.tag == "Hive")
+        {
+           
+        }
+        if (other.tag == "Bee")
+        {
+
+        }
+
     }
 }

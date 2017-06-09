@@ -93,7 +93,7 @@ public class WaspIA : MonoBehaviour {
             Dino.GetComponent<DinoBehaviour>().Damage(gameObject);
         }
 
-        if (collision.tag == "Bite")
+        if (collision.tag == "Bite" || collision.tag == "FireBall")
         {
             hp--;
             FinishAttack();
