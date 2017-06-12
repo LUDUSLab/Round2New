@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class DinoBehaviour : MonoBehaviour
 {
-
+    bool canSpawn;
+    GameObject EnemySpawned;
+    Vector2 dinoAfterTime;
+    public GameObject Enemy;
     public float maxSpeed;
     public float maxAccel;
     private float accel = 0f;
@@ -46,6 +49,7 @@ public class DinoBehaviour : MonoBehaviour
 
     void Start()
     {
+        canSpawn = false;
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         isBitting = false;
@@ -54,7 +58,7 @@ public class DinoBehaviour : MonoBehaviour
         //Fireball = GameObject.FindGameObjectWithTag("FireBall");
         RespawnPoint = transform.position;
         canMove = true;
-        timeToSpawnNewEnemies = 20;
+        timeToSpawnNewEnemies = 50;
         time = 0;
 
         hp = 3;
@@ -72,7 +76,7 @@ public class DinoBehaviour : MonoBehaviour
         attack();
         Die();
         FireBall();
-        if(move == 0)
+        if (move == 0)
         {
             time += Time.deltaTime;
         }
@@ -81,11 +85,29 @@ public class DinoBehaviour : MonoBehaviour
             time = 0;
         }
 
-        if(time >= timeToSpawnNewEnemies)
+        if (time >= timeToSpawnNewEnemies)
         {
             time = 0;
+
+            dinoAfterTime = new Vector2(gameObject.transform.position.x + 10, gameObject.transform.position.y);
             //instanciar aqui novos inimigos apos certo tempo
+            EnemySpawned = Instantiate(Enemy, new Vector3(gameObject.transform.position.x + 10, gameObject.transform.position.y, gameObject.transform.position.z), Quaternion.identity);
+            canSpawn = true;
+            //Debug.Log(EnemySpawned.transform.position);
         }
+        if (canSpawn)
+        {
+            if (EnemySpawned.transform.position.x > dinoAfterTime.x - 4.5f)
+            {
+                Vector2 vec = new Vector2(dinoAfterTime.x - 4.5f, dinoAfterTime.y);
+                EnemySpawned.transform.position = Vector2.MoveTowards(EnemySpawned.transform.position, vec, 2 * Time.deltaTime);
+            }
+            else
+            {
+                canSpawn = false;
+            }
+        }
+
 
     }
 
@@ -96,11 +118,13 @@ public class DinoBehaviour : MonoBehaviour
         walk();
         accelIncrement();
 
-        if (maxSpeed == 2) {
+        if (maxSpeed == 2)
+        {
 
             compagTime = Time.time;
 
-            if ((TimeSlime + 3) < compagTime) {
+            if ((TimeSlime + 3) < compagTime)
+            {
 
                 maxAccel = 2;
                 maxSpeed = 3;
@@ -120,9 +144,11 @@ public class DinoBehaviour : MonoBehaviour
             RespawnPoint = other.transform.position;
         }
 
-        if (other.CompareTag("Life")) {
+        if (other.CompareTag("Life"))
+        {
 
-            if (hp < 3) {
+            if (hp < 3)
+            {
 
                 hp++;
                 other.gameObject.SetActive(false);
@@ -217,7 +243,7 @@ public class DinoBehaviour : MonoBehaviour
             gameObject.GetComponent<BoxCollider2D>().enabled = true;
             canTakeDamage = true;
         }
-        
+
     }
 
 
@@ -254,7 +280,7 @@ public class DinoBehaviour : MonoBehaviour
         {
             move = 0;
         }
-        
+
         falling = rb.velocity.y;
     }
 
@@ -302,7 +328,7 @@ public class DinoBehaviour : MonoBehaviour
             anim.SetBool("isBitting", isBitting);
             anim.SetTrigger("Bite");
             //rb.velocity = new Vector2(0, 0);
-            
+
             canMove = false;
             StartCoroutine(BiteCheck());
             yield return new WaitForSeconds(0.5f);
@@ -322,15 +348,15 @@ public class DinoBehaviour : MonoBehaviour
             anim.SetBool("isBitting", isShooting);
             isShooting = true;
             anim.SetTrigger("Bite");
-            
+
             //rb.velocity = new Vector2(0, 0);
             canMove = false;
             yield return new WaitForSeconds(0.32f);
-            
-            Vector3 vec = new Vector3(gameObject.transform.position.x + 0.45f, gameObject.transform.position.y, gameObject.transform.position.z);
+
+            Vector3 vec = new Vector3(gameObject.transform.position.x + 0.5f, gameObject.transform.position.y, gameObject.transform.position.z);
             Instantiate(Fireball, vec, gameObject.transform.rotation);
             canMove = true;
-            Invoke("setShootDelay",1f);
+            Invoke("setShootDelay", 1f);
         }
         yield return null;
         //isShooting = false;
@@ -338,7 +364,7 @@ public class DinoBehaviour : MonoBehaviour
 
     void Die()
     {
-        if (hp <= 0)
+        if (hp <= 0 && respawn != 1)
         {
             lm.LoadLevel("MenuRound2");
         }
