@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class chefe : MonoBehaviour {
     private Transform target;
+    Transform Way;
     private Animator animator;
     private float Distancia;
     public int vidaBoss;//vida do sapo
@@ -27,7 +28,7 @@ public class chefe : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if (CanMove)
-            gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, Way, 2 * Time.deltaTime);
+            gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, Way.position, 2 * Time.deltaTime);
 
     }
 }
