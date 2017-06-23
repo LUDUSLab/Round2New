@@ -15,7 +15,7 @@ public class DinoBehaviour : MonoBehaviour
     private int SpeedMinus;
     public Vector3 RespawnPoint;
     public bool isBitting, slimed, isShooting;
-    float delayToJump = 1f;
+    float delayToJump = 0f;
     bool canTakeDamage;
     public GameObject Fireball;
     bool canMove;
