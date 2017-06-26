@@ -15,7 +15,7 @@ public class DinoBehaviour : MonoBehaviour
     private int SpeedMinus;
     public Vector3 RespawnPoint;
     public bool isBitting, slimed, isShooting;
-    float delayToJump = 1f;
+    float delayToJump = 0f;
     bool canTakeDamage;
     public GameObject Fireball;
     bool canMove;
@@ -329,12 +329,18 @@ public class DinoBehaviour : MonoBehaviour
             anim.SetTrigger("Bite");
             //rb.velocity = new Vector2(0, 0);
 
-            canMove = false;
+            //canMove = false;
+            if (grounded)
+            {
+                canMove = false;
+            }
+           
             StartCoroutine(BiteCheck());
-            yield return new WaitForSeconds(0.5f);
-            isBitting = false;
-            Invoke("setBiteDelay", 1f);
-            //anim.SetBool("isBitting", isBitting);
+            //Invoke("setMoveDelay", 0.37f);
+            Invoke("setBiteDelay", 0.7f);
+            yield return new WaitForSeconds(0.3f);
+            //isBitting = false;
+            anim.SetBool("isBitting", false);
             canMove = true;
         }
         yield return null;
@@ -373,14 +379,14 @@ public class DinoBehaviour : MonoBehaviour
     void setShootDelay()
     {
         isShooting = false;
-        //canMove = true;
-        //anim.SetBool("isBitting", isShooting);
     }
 
     void setBiteDelay()
     {
         isBitting = false;
-        //anim.SetBool("isBitting", isBitting);
-        //canMove = true;
+    }
+    void setMoveDelay()
+    {
+        canMove = true;
     }
 }

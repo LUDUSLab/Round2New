@@ -1,0 +1,286 @@
+fileFormatVersion: 2
+guid: 2f4a42ecc94022345ba840a85fa67948
+timeCreated: 1498232004
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Plataformas2_0
+    21300002: Plataformas2_1
+    21300004: Plataformas2_2
+    21300006: Plataformas2_3
+    21300008: Plataformas2_4
+    21300010: Plataformas2_5
+    21300012: Plataformas2_6
+    21300014: Plataformas2_7
+    21300016: Plataformas2_8
+    21300018: Plataformas2_9
+    21300020: Plataformas2_10
+    21300022: Plataformas2_11
+    21300024: Plataformas2_12
+    21300026: Plataformas2_13
+    21300028: Plataformas2_14
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 50
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 8192
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Plataformas2_0
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 334
+        width: 185
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Plataformas2_1
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 334
+        width: 341
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Plataformas2_2
+      rect:
+        serializedVersion: 2
+        x: 840
+        y: 334
+        width: 458
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Plataformas2_3
+      rect:
+        serializedVersion: 2
+        x: 1673
+        y: 248
+        width: 419
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Plataformas2_4
+      rect:
+        serializedVersion: 2
+        x: 2985
+        y: 244
+        width: 341
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Plataformas2_5
+      rect:
+        serializedVersion: 2
+        x: 4745
+        y: 196
+        width: 211
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Plataformas2_6
+      rect:
+        serializedVersion: 2
+        x: 5481
+        y: 196
+        width: 445
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Plataformas2_7
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 148
+        width: 692
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Plataformas2_8
+      rect:
+        serializedVersion: 2
+        x: 841
+        y: 148
+        width: 718
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Plataformas2_9
+      rect:
+        serializedVersion: 2
+        x: 2185
+        y: 148
+        width: 341
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Plataformas2_10
+      rect:
+        serializedVersion: 2
+        x: 2633
+        y: 148
+        width: 289
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Plataformas2_11
+      rect:
+        serializedVersion: 2
+        x: 3465
+        y: 98
+        width: 250
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Plataformas2_12
+      rect:
+        serializedVersion: 2
+        x: 3817
+        y: 98
+        width: 484
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Plataformas2_13
+      rect:
+        serializedVersion: 2
+        x: 4393
+        y: 98
+        width: 276
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Plataformas2_14
+      rect:
+        serializedVersion: 2
+        x: 5065
+        y: 98
+        width: 302
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
