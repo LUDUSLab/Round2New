@@ -337,7 +337,11 @@ public class DinoBehaviour : MonoBehaviour
            
             StartCoroutine(BiteCheck());
             //Invoke("setMoveDelay", 0.37f);
-            Invoke("setBiteDelay", 0.7f);
+			if (grounded) {
+				Invoke ("setBiteDelay", 0.15f);
+			} else {
+				Invoke ("setBiteDelay", 0.5f);
+			}
             yield return new WaitForSeconds(0.3f);
             //isBitting = false;
             anim.SetBool("isBitting", false);
