@@ -28,6 +28,7 @@ public class BeeIA : MonoBehaviour {
         if ((nb > numBees-1)||(bees[numBees-1]==null))
         {
             CancelInvoke();
+            Destroy(gameObject);
 
         }
     }
