@@ -374,10 +374,23 @@ public class DinoBehaviour : MonoBehaviour
 
     void Die()
     {
-        if (hp <= 0 && respawn != 1)
+        if (hp == 0 && respawn != 1)
         {
-            lm.LoadLevel("MenuRound2");
+            hp--;
+            canMove = false;
+            isBitting = true;
+            isShooting = true;
+            anim.SetTrigger("Die");
+            gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            StartCoroutine(Load());
+            
         }
+    }
+
+    IEnumerator Load()
+    {
+        yield return new WaitForSeconds(4);
+        lm.LoadLevel("MenuRound2");
     }
 
     void setShootDelay()

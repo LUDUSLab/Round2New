@@ -1,0 +1,292 @@
+fileFormatVersion: 2
+guid: 1730c595e6d90204ba5f7a84cc60a776
+timeCreated: 1501211880
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: EstacasBck2_0
+    21300002: EstacasBck2_1
+    21300004: EstacasBck2_2
+    21300006: EstacasBck2_3
+    21300008: EstacasBck2_4
+    21300010: EstacasBck2_5
+    21300012: EstacasBck2_6
+    21300014: EstacasBck2_7
+    21300016: EstacasBck2_8
+    21300018: EstacasBck2_9
+    21300020: EstacasBck2_10
+    21300022: EstacasBck2_11
+    21300024: EstacasBck2_12
+    21300026: EstacasBck2_13
+    21300028: EstacasBck2_14
+    21300030: EstacasBck2_15
+    21300032: EstacasBck2_16
+    21300034: EstacasBck2_17
+    21300036: EstacasBck2_18
+    21300038: EstacasBck2_19
+    21300040: EstacasBck2_20
+    21300042: EstacasBck2_21
+    21300044: EstacasBck2_22
+    21300046: EstacasBck2_23
+    21300048: EstacasBck2_24
+    21300050: EstacasBck2_25
+    21300052: EstacasBck2_26
+    21300054: EstacasBck2_27
+    21300056: EstacasBck2_28
+    21300058: EstacasBck2_29
+    21300060: EstacasBck2_30
+    21300062: EstacasBck2_31
+    21300064: EstacasBck2_32
+    21300066: EstacasBck2_33
+    21300068: EstacasBck2_34
+    21300070: EstacasBck2_35
+    21300072: EstacasBck2_36
+    21300074: EstacasBck2_37
+    21300076: EstacasBck2_38
+    21300078: EstacasBck2_39
+    21300080: EstacasBck2_40
+    21300082: EstacasBck2_41
+    21300084: EstacasBck2_42
+    21300086: EstacasBck2_43
+    21300088: EstacasBck2_44
+    21300090: EstacasBck2_45
+    21300092: EstacasBck2_46
+    21300094: EstacasBck2_47
+    21300096: EstacasBck2_48
+    21300098: EstacasBck2_49
+    21300100: EstacasBck2_50
+    21300102: EstacasBck2_51
+    21300104: EstacasBck2_52
+    21300106: EstacasBck2_53
+    21300108: EstacasBck2_54
+    21300110: EstacasBck2_55
+    21300112: EstacasBck2_56
+    21300114: EstacasBck2_57
+    21300116: EstacasBck2_58
+    21300118: EstacasBck2_59
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 50
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 8192
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: EstacasBck2_1
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 43
+        width: 635
+        height: 300
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: EstacasBck2_11
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 44
+        width: 652
+        height: 300
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: EstacasBck2_22
+      rect:
+        serializedVersion: 2
+        x: 1705
+        y: 44
+        width: 333
+        height: 201
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: EstacasBck2_28
+      rect:
+        serializedVersion: 2
+        x: 2213
+        y: 44
+        width: 268
+        height: 119
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: EstacasBck2_33
+      rect:
+        serializedVersion: 2
+        x: 2644
+        y: 44
+        width: 257
+        height: 119
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: EstacasBck2_38
+      rect:
+        serializedVersion: 2
+        x: 3011
+        y: 44
+        width: 268
+        height: 201
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: EstacasBck2_43
+      rect:
+        serializedVersion: 2
+        x: 3470
+        y: 44
+        width: 215
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: EstacasBck2_44
+      rect:
+        serializedVersion: 2
+        x: 3827
+        y: 44
+        width: 422
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: EstacasBck2_45
+      rect:
+        serializedVersion: 2
+        x: 4414
+        y: 44
+        width: 215
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: EstacasBck2_46
+      rect:
+        serializedVersion: 2
+        x: 4768
+        y: 44
+        width: 159
+        height: 148
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: EstacasBck2_50
+      rect:
+        serializedVersion: 2
+        x: 5072
+        y: 44
+        width: 282
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: EstacasBck2_51
+      rect:
+        serializedVersion: 2
+        x: 5504
+        y: 44
+        width: 397
+        height: 148
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
